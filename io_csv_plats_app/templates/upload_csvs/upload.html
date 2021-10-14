@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock title %}
+
+
+{% block upload %}
+<form action="" method="POST" class="ui form" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <input type="file" name= "file_name" multiple>
+    <button type="submit">Upload</button>
+
+</form>
+
+{% endblock upload %}
+
+
+{% block view_uploaded %}
+
+    {% if upload_csv|length > 0 %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Upload Date</th>
+              <th scope="col">file_name</th>
+              <th scope="col">GO</th>
+              <th scope="col">DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for f in upload_csv %}
+            <tr>
+              <td>{{f.uploaded}}</td>
+              <td>{{ f.file_name }}</td>
+              <td>
+                <a href="/go/{{f.id}}"> Edit </a>
+              </td>
+              <td>
+                <a href="/delete/{{f.id}}"> Delete </a>
+              </td>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    {% else %}
+        <div class="row">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-8">
+              <h3>Start by Adding First CSV</h3>
+            </div>
+            <div class="col-lg-3">
+
+            </div>
+          </div>
+    {% endif %}
+
+
+{% endblock view_uploaded %}
+
+
+
