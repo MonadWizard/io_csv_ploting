@@ -1,0 +1,80 @@
+{% extends 'detail_base.html' %} {% load static %} {% block csv_views %}
+
+<h1>
+    Top
+    <input
+        type="number"
+        class="start"
+        id="start"
+        oninput="firstInputHandler(event)"
+    />
+    to
+    <input
+        type="number"
+        class="end"
+        id="end"
+        oninput="secondInputHandler(event)"
+    />demo rows are...
+</h1>
+
+<table class="table table-dark table-striped"></table>
+<script>
+    const firstInputHandler = (event) => {
+        window.firstValue = event.target.value;
+        if (window.firstValue && window.secondValue) {
+            dataLoad();
+        }
+    };
+    const secondInputHandler = (event) => {
+        window.secondValue = event.target.value;
+        if (window.firstValue && window.secondValue) {
+            dataLoad();
+        }
+    };
+
+    const dataLoad = () => {
+        fetch(`{{csvs.file_name}}`)
+            .then((res) => {
+                return res.text();
+            })
+            .then((data) => {
+                let result = data.split(/\r?\n|\r/).map((e) => {
+                    return e.split(',');
+                });
+                const modifiedResult = result.slice(
+                    window.firstValue || 0,
+                    window.secondValue || 5
+                );
+                document.querySelector('table').innerHTML = '';
+
+                modifiedResult.forEach((e, index) => {
+                    let m = e
+                        .map((e) => {
+                            return `<td>${e}</td>`;
+                        })
+                        .join('');
+
+                    let ce = document.createElement('tr');
+                    ce.innerHTML = m;
+                    if (ce.innerText != '') {
+                        document.querySelector('table').appendChild(ce);
+                    }
+                    // console.log(m);
+                });
+            });
+    };
+
+    onload = dataLoad();
+</script>
+
+<div class="d-flex justify-content-evenly text-right">
+    <button type="button" class="btn btn-outline-dark">
+        <a href="{{csvs.file_name}}"> Download as CSV</a>
+    </button>
+
+    <button type="button" class="btn btn-outline-success">
+        <a href="{{csvs.file_name}}"> Download as PDF</a>
+    </button>
+</div>
+
+{% endblock csv_views %}

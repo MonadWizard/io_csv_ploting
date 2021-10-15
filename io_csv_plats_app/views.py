@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .forms import CSVsModelForm
 from .models import CSVs
+import pandas as pd
 # Create your views here.
 
 
@@ -23,5 +24,12 @@ def view_delete(request, id):
 
 def view_detail(request, id):
     csvs = CSVs.objects.get(id=id)
+    # print('file name ::: ',csvs.file_name)
+    data = pd.read_csv(csvs.file_name)
+    print(data.head())
     
-    return render(request, 'Detail_csvs/detail_csvs.html', {'csvs':csvs})
+    return render(request, 'detail_csvs/csv_view.html', {'csvs':csvs})
+
+
+def Data_Preprocess():
+    pass
