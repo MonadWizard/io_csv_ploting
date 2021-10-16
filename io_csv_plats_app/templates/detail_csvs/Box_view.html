@@ -11,54 +11,66 @@
         <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
     </head>
     <body>
+
+<p>many data-set have independent column placed by different index, so I just use a dammy list for dependent value</p>
+
         <div id="myDiv">
             <!-- Plotly chart will be drawn inside this DIV -->
         </div>
+
+        <!-- pick X and y value no need no need  -->
+
         <script>
+            let first_column2 = JSON.parse(`{{ first_column }}`);
+            let second_column2 = JSON.parse(`{{ second_column }}`);
+            // let last_column = JSON.parse(`{{ last_column }}`);
+
+// var x = last_column;
+
             var x = [
-                'day 1',
-                'day 1',
-                'day 1',
-                'day 1',
-                'day 1',
-                'day 1',
-                'day 2',
-                'day 2',
-                'day 2',
-                'day 2',
-                'day 2',
-                'day 2',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Dammy independent 1',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
+                'Damyy independent 2',
             ];
 
             var trace1 = {
-                y: [0.2, 0.2, 0.6, 1.0, 0.5, 0.4, 0.2, 0.7, 0.9, 0.1, 0.5, 0.3],
+                y: first_column2,
                 x: x,
-                name: 'kale',
+                name: 'random coloum 1',
                 marker: { color: '#3D9970' },
                 type: 'box',
             };
 
             var trace2 = {
-                y: [0.6, 0.7, 0.3, 0.6, 0.0, 0.5, 0.7, 0.9, 0.5, 0.8, 0.7, 0.2],
+                y: second_column2,
                 x: x,
-                name: 'radishes',
+                name: 'random coloum 2',
                 marker: { color: '#FF4136' },
                 type: 'box',
             };
 
-            var trace3 = {
-                y: [0.1, 0.3, 0.1, 0.9, 0.6, 0.6, 0.9, 1.0, 0.3, 0.6, 0.8, 0.5],
-                x: x,
-                name: 'carrots',
-                marker: { color: '#FF851B' },
-                type: 'box',
-            };
-
-            var data1 = [trace1, trace2, trace3];
+            var data1 = [trace1, trace2];
 
             var layout = {
                 yaxis: {
-                    title: 'normalized moisture',
+                    title: 'random ',
                     zeroline: false,
                 },
                 boxmode: 'group',

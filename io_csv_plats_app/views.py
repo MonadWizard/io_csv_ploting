@@ -43,6 +43,8 @@ def view_detail(request, id):
 
     global data
     data = pd.read_csv(csvs.file_name)
+    data = data.replace(r'^\s*$', np.nan, regex=True)   # replace empty data to Nan
+    data = data.dropna()   # drop Nan column
 
     num_data = data.select_dtypes(include=np.number)  #take only numeric columns
     # print(num_data.head())
@@ -51,12 +53,16 @@ def view_detail(request, id):
     first_column = random_columns.iloc[:, 0].to_list()
     # print(first_column)
     second_column = random_columns.iloc[:, 1].tolist()
-    # print(second_column)
+    # print(len(second_column))
+    last_column = data.iloc[:,-1].tolist()
+
+    # print(type(last_column), last_column)
 
     context = {
         'csvs': csvs,
         'first_column': first_column,
         'second_column': second_column,
+        'last_column':last_column,
 
     }
 

@@ -36,35 +36,26 @@
         <canvas id="scatter" width="300" height="90"></canvas>
 
         <script>
-            let first_column = `{{ first_column }}`
-            let second_column = `{{ second_column }}`
-            
             const data = {
                 datasets: [
                     {
                         label: 'Scatter Dataset',
-                        data: [
-                            {
-                                x: -10,
-                                y: 0,
-                            },
-                            {
-                                x: 0.5,
-                                y: 10,
-                            },
-                            {
-                                x: 106.741052,
-                                y: 5,
-                            },
-                            {
-                                x: 0.5,
-                                y: 5.5,
-                            },
-                        ],
+                        data: [],
                         backgroundColor: 'rgb(255, 99, 132)',
                     },
                 ],
             };
+            let first_column = JSON.parse(`{{ first_column }}`);
+            let second_column = JSON.parse(`{{ second_column }}`);
+
+            first_column.map((key, index) => {
+                data.datasets[0].data.push({
+                    x: first_column[index],
+                    y: second_column[index],
+                });
+            });
+
+            console.log(data);
 
             var ctx = document.getElementById('scatter');
             var scatter = new Chart(ctx, {
