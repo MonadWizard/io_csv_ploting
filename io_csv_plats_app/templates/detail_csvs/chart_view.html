@@ -18,7 +18,20 @@
     </head>
     <body>
         <div class="container">
-            <h1>Bootstrap tab panel example (using nav-pills)</h1>
+            <br>
+            <h2>
+                Each plot will generate a plot diagram by choosing random columns from the CSV content.
+            </h2>
+
+            <!-- pick X and y value no need no need  -->
+            <!-- <form action="" method="POST">
+                {% csrf_token %}
+                <label for="fname">X :</label><br />
+                <input name="inputField_x" type="number" /><br />
+                <label for="lname">y :</label><br />
+                <input name="inputField_y" type="text" /><br /><br />
+                <input type="submit" value="Submit" />
+            </form> -->
         </div>
         <div id="exTab1" class="container">
             <ul class="nav nav-pills">
@@ -31,29 +44,15 @@
 
             <div class="tab-content clearfix">
                 <div class="tab-pane active" id="1a">
-
-                    
                     {% include 'detail_csvs/Scatter_view.html' %}
-    
-                    
                 </div>
-
-
-
-
 
                 <div class="tab-pane" id="2a">
-                    
                     {% include 'detail_csvs/Box_view.html' %}
-
                 </div>
-
-
-
 
                 <div class="tab-pane" id="3a">
                     {% include 'detail_csvs/Histogram.html' %}
-
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 {% extends 'detail_base.html' %} {% load static %} {% block csv_views %}
 
-<h1>
-    Top
+<h3 py-5 my-5>
+    select Row From
     <input
         type="number"
         class="start"
@@ -14,8 +14,8 @@
         class="end"
         id="end"
         oninput="secondInputHandler(event)"
-    />demo rows are...
-</h1>
+    /> are display below... :)
+</h3>
 
 <table class="table table-dark table-striped"></table>
 <script>
