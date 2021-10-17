@@ -7,21 +7,27 @@
 
 
 {% block upload %}
-<form action="" method="POST" class="ui form" enctype="multipart/form-data">
 
+<br>
+<p class="text-right">You can upload multiple file by select and upload... :) </p>
+<form action="" method="POST" class="ui form " enctype="multipart/form-data">
+
+  <div class="d-flex justify-content-evenly">
     {% csrf_token %}
 
     <input type="file" name= "file_name" multiple>
     <button type="submit">Upload</button>
-    
+  </div>
 
 </form>
 
 {% endblock upload %}
 
 
-{% block view_uploaded %}
 
+
+{% block view_uploaded %}
+<br>
     {% if upload_csv|length > 0 %}
         <table class="table">
           <thead>

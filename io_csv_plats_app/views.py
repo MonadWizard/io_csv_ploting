@@ -75,3 +75,4 @@ def view_detail(request, id):
     return render(request, 'detail_csvs/csv_view.html', context)
 
 
+
