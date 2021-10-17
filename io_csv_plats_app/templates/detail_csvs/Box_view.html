@@ -9,10 +9,42 @@
         <title>Document</title>
         <!-- Load plotly.js into the DOM -->
         <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+
+
+<!-- new  -->
+
+
+        <!-- html2pdf -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"
+            integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <!-- Latest compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"
+        />
+
+        
+
     </head>
     <body>
 
+        <div class ="container text-right" style="display: block; width: 90%; margin: auto">
+            <button
+                
+                id="exportPDF2"
+            >
+                Export PDF
+            </button>
+        </div>
+
 <p>many data-set have independent column placed by different index, so I just use a dammy list for dependent value</p>
+    <div id="html2pdf2" style="display: block; width: 90%; margin: auto">
 
         <div id="myDiv">
             <!-- Plotly chart will be drawn inside this DIV -->
@@ -78,5 +110,15 @@
 
             Plotly.newPlot('myDiv', data1, layout);
         </script>
+
+    </div>
+
+    <script>
+        let htmlPDF2 = document.getElementById('html2pdf2');
+        let exportPDF2 = document.getElementById('exportPDF2');
+        exportPDF2.onclick = (e) => html2pdf(htmlPDF2);
+    </script>
+
+
     </body>
 </html>

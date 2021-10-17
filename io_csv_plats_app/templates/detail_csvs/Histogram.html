@@ -22,18 +22,44 @@
             crossorigin="anonymous"
         ></script>
         <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+        integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E="
+        crossorigin="anonymous"
+    />
+
+
+        <!-- html2pdf -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"
+            integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <!-- Latest compiled and minified CSS -->
+        <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
-            integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E="
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
             crossorigin="anonymous"
         />
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-        <title></title>
     </head>
 
     <body>
+
+        <div class ="container text-right" style="display: block; width: 90%; margin: auto">
+            <button
+                
+                id="exportPDF"
+            >
+                Export PDF
+            </button>
+        </div>
+
+        <div id="html2pdf" style="display: block; width: 90%; margin: auto">
         <canvas id="histo" width="300" height="90"></canvas>
 
         <script>
@@ -79,7 +105,16 @@
                 },
             });
 
-            console.log('his', histo);
+            // console.log('his', histo);
         </script>
+        </div>
+
+            <script>
+                let htmlPDF = document.getElementById('html2pdf');
+                let exportPDF = document.getElementById('exportPDF');
+                exportPDF.onclick = (e) => html2pdf(htmlPDF);
+            </script>
+        
+
     </body>
 </html>
