@@ -4,6 +4,8 @@ from .models import CSVs
 import pandas as pd
 import numpy as np
 import random
+import os
+
 
 # Create your views here.
 
@@ -26,6 +28,10 @@ def upload_file_view(request):
 
 def view_delete(request, id):
     csvs = CSVs.objects.get(id=id)
+    print('file name ::: ',type(csvs.file_name),csvs.file_name)
+    # os.remove(csvs.file_name)
+    # print("Done")
+    
 
     csvs.delete()
     return redirect('/')
@@ -69,5 +75,3 @@ def view_detail(request, id):
     return render(request, 'detail_csvs/csv_view.html', context)
 
 
-def Data_Preprocess():
-    pass
